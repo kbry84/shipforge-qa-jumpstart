@@ -1,0 +1,16 @@
+{
+  "name": "shipforge-qa-jumpstart",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "cy:open": "cypress open",
+    "test:ui": "cypress run --spec \"cypress/e2e/ui/**/*.cy.ts\"",
+    "test:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.ts\"",
+    "test:smoke": "cypress run --spec \"cypress/e2e/smoke/**/*.cy.ts\""
+  },
+  "devDependencies": {
+    "@types/cypress": "^1.1.6",
+    "@types/node": "^25.5.0",
+    "cypress": "^15.12.0"
+  }
+}
