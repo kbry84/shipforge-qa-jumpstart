@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShipForge Labs</title>
+  <style>
+    :root {
+      --bg: #07101f;
+      --bg-soft: #0e1830;
+      --card: rgba(255,255,255,0.06);
+      --text: #f4f7fb;
+      --muted: #b6c2d9;
+      --orange: #f59a23;
+      --orange-2: #ff7b00;
+      --blue: #43b7ff;
+      --line: rgba(255,255,255,0.12);
+      --shadow: 0 24px 80px rgba(0,0,0,0.35);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(67,183,255,0.18), transparent 28%),
+        radial-gradient(circle at top left, rgba(245,154,35,0.14), transparent 22%),
+        linear-gradient(180deg, #050b16 0%, #0a1326 48%, #0c1630 100%);
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .brand span { color: var(--orange); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); opacity: 0.96; }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--orange), var(--orange-2));
+      color: white;
+      box-shadow: 0 12px 28px rgba(255,123,0,0.2);
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 20px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.03);
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .accent { color: var(--orange); }
+
+    .lede {
+      margin: 0 0 24px;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0 0 30px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      color: #e5ecfa;
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(67,183,255,0.2), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-card img {
+      display: block;
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section {
+      padding: 0 0 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-label {
+      color: var(--orange);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .subtext {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .mini-card {
+      border-radius: 20px;
+      padding: 20px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid var(--line);
+    }
+
+    .mini-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .repo-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .repo-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--blue);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .repo-link {
+      word-break: break-word;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .repo-link:hover { text-decoration: underline; }
+
+    footer {
+      padding: 28px 0 56px;
+      color: #9aa8c4;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-3,
+      .repo-box {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        gap: 18px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-bottom: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">Ship<span>Forge</span> Labs</div>
+      <div class="nav-links">
+        <a class="btn btn-secondary" href="#repo">View Repo</a>
+        <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Contact</a>
+      </div>
+    </header>
+  </div>
+
+  <main class="hero">
+    <div class="wrap hero-grid">
+      <section>
+        <div class="eyebrow">QA automation consulting</div>
+        <h1>Forging quality.<br /><span class="accent">Securing launches.</span></h1>
+        <p class="lede">
+          ShipForge Labs helps small software teams launch with more confidence through practical UI, API,
+          and CI automation. No bloated transformation project. Just a clean, credible automation foundation
+          that teams can actually use.
+        </p>
+        <ul class="pills">
+          <li class="pill">Cypress + TypeScript</li>
+          <li class="pill">API coverage</li>
+          <li class="pill">GitHub / GitLab CI</li>
+          <li class="pill">Smoke suite setup</li>
+        </ul>
+        <div class="nav-links">
+          <a class="btn btn-primary" href="#repo">See the starter repo</a>
+          <a class="btn btn-secondary" href="mailto:hello@shipforgelabs.com">Request details</a>
+        </div>
+      </section>
+
+      <aside class="hero-card">
+        <img src="./shipforge-logo.png" alt="ShipForge Labs brand graphic" />
+      </aside>
+    </div>
+  </main>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="card">
+        <div class="section-label">What this is</div>
+        <h2>A clean splash page for your brand</h2>
+        <p class="subtext">
+          This version keeps things intentionally lean: brand, positioning, and a direct path to your GitHub repo.
+          It is built to work well as a simple first homepage while you grow into a fuller service site later.
+        </p>
+
+        <div class="grid-3">
+          <div class="mini-card">
+            <h3>Clear positioning</h3>
+            <p>Shows exactly what ShipForge Labs does without sounding overloaded or vague.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Proof-ready</h3>
+            <p>Gives visitors a straight path to your starter repo so they can see the work behind the brand.</p>
+          </div>
+          <div class="mini-card">
+            <h3>Easy to expand</h3>
+            <p>Add packages, testimonials, contact forms, or a booking link later without rebuilding from scratch.</p>
+          </div>
+        </div>
+
+        <div class="repo-box" id="repo">
+          <div>
+            <div class="repo-label">Repo link</div>
+            <a class="repo-link" href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank" rel="noopener noreferrer">
+              github.com/kbry84/shipforge-qa-jumpstart
+            </a>
+          </div>
+          <a class="btn btn-primary" href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank" rel="noopener noreferrer">Open GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">ShipForge Labs — practical automation foundations for reliable releases.</div>
+  </footer>
+</body>
+</html>
