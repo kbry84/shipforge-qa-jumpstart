@@ -20,6 +20,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
@@ -30,90 +31,109 @@
         linear-gradient(180deg, #050b16 0%, #0a1326 48%, #0c1630 100%);
     }
 
-    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .wrap {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
 
     .nav {
       display: flex;
       justify-content: space-between;
       padding: 24px 0;
+      align-items: center;
     }
 
     .brand {
       font-weight: 800;
       letter-spacing: 0.04em;
+      font-size: 1.1rem;
     }
 
     .brand span { color: var(--orange); }
 
-    .nav-links { display: flex; gap: 12px; }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
 
     .btn {
       padding: 12px 18px;
       border-radius: 14px;
       text-decoration: none;
       font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
     }
 
     .btn-primary {
       background: linear-gradient(90deg, var(--orange), var(--orange-2));
       color: white;
+      box-shadow: 0 10px 24px rgba(255,123,0,0.25);
     }
 
     .btn-secondary {
       border: 1px solid var(--line);
       color: var(--text);
+      background: rgba(255,255,255,0.03);
     }
 
     .hero {
-      padding: 40px 0 70px;
+      padding: 40px 0 80px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 40px;
       align-items: center;
     }
 
     .eyebrow {
       color: var(--blue);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
     }
 
     h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      margin: 0 0 16px;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      margin: 0 0 18px;
+      line-height: 1.05;
     }
 
     .accent { color: var(--orange); }
 
     .lede {
       color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 640px;
     }
 
     .hero-note {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 0.9rem;
       color: #9aa8c4;
     }
 
     .hero-card {
-      border-radius: 24px;
-      padding: 20px;
-      background: rgba(255,255,255,0.05);
+      border-radius: 28px;
+      overflow: hidden;
       border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
     .hero-card img {
       width: 100%;
-      border-radius: 16px;
+      height: auto;
+      display: block;
       object-fit: contain;
-      padding: 20px;
-      background: rgba(255,255,255,0.02);
     }
 
     .section {
@@ -122,39 +142,67 @@
 
     .card {
       background: var(--card);
-      padding: 28px;
+      padding: 32px;
       border-radius: var(--radius);
       border: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
+    .subtext {
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .mini-card {
-      padding: 20px;
+      padding: 22px;
       border-radius: 18px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.04);
     }
 
+    .mini-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .mini-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
     .repo-box {
-      margin-top: 20px;
+      margin-top: 24px;
       padding: 20px;
-      border-radius: 16px;
+      border-radius: 18px;
       border: 1px solid var(--line);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .repo-box h3 {
+      margin-top: 0;
     }
 
     footer {
       padding: 40px 0;
       text-align: center;
       color: #9aa8c4;
+      font-size: 0.95rem;
     }
 
     @media (max-width: 900px) {
-      .hero-grid, .grid-3 {
+      .hero-grid,
+      .grid-3 {
         grid-template-columns: 1fr;
       }
     }
@@ -166,6 +214,7 @@
 <div class="wrap">
   <header class="nav">
     <div class="brand">Ship<span>Forge</span> Labs</div>
+
     <div class="nav-links">
       <a class="btn btn-secondary" href="#repo">View Demo</a>
       <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
@@ -199,8 +248,9 @@
       </p>
     </section>
 
+    <!-- 🔥 IMPACT HERO VISUAL -->
     <aside class="hero-card">
-      <img src="assets/shipforge-logo.png" alt="ShipForge Labs logo" />
+      <img src="shipforge-logo.png" alt="ShipForge Labs logo" />
     </aside>
 
   </div>
@@ -212,7 +262,7 @@
 
       <h2>Automation that actually improves release confidence</h2>
 
-      <p class="lede">
+      <p class="subtext">
         Most teams don’t have a testing problem — they have a reliability problem.
         I help teams fix flaky tests, improve coverage, and build automation they can actually trust before shipping.
       </p>
@@ -220,12 +270,12 @@
       <div class="grid-3">
         <div class="mini-card">
           <h3>Test Stabilization</h3>
-          <p>Fix flaky tests so your CI results can actually be trusted.</p>
+          <p>Fix flaky Cypress tests so your team can trust CI results again.</p>
         </div>
 
         <div class="mini-card">
           <h3>API + Critical Flow Coverage</h3>
-          <p>Protect checkout, payments, and core flows that impact revenue.</p>
+          <p>Ensure high-risk flows like checkout and reservations are fully protected.</p>
         </div>
 
         <div class="mini-card">
@@ -236,7 +286,8 @@
 
       <div class="repo-box" id="repo">
         <h3>Live Demo (UI + API Validation)</h3>
-        <p>
+
+        <p class="subtext">
           A real-world Cypress test covering UI + API validation, request assertions, and CI-ready automation.
         </p>
 
