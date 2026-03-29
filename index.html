@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ShipForge Labs</title>
+
   <style>
     :root {
       --bg: #07101f;
-      --bg-soft: #0e1830;
       --card: rgba(255,255,255,0.06);
       --text: #f4f7fb;
       --muted: #b6c2d9;
@@ -20,10 +20,9 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-family: Inter, Arial, sans-serif;
       color: var(--text);
       background:
         radial-gradient(circle at top right, rgba(67,183,255,0.18), transparent 28%),
@@ -31,351 +30,228 @@
         linear-gradient(180deg, #050b16 0%, #0a1326 48%, #0c1630 100%);
     }
 
-    a { color: inherit; }
     .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 
     .nav {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       padding: 24px 0;
     }
 
     .brand {
-      font-size: 1.1rem;
       font-weight: 800;
       letter-spacing: 0.04em;
     }
 
     .brand span { color: var(--orange); }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+    .nav-links { display: flex; gap: 12px; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      text-decoration: none;
       padding: 12px 18px;
       border-radius: 14px;
+      text-decoration: none;
       font-weight: 700;
-      border: 1px solid transparent;
-      transition: transform 0.18s ease, opacity 0.18s ease, border-color 0.18s ease;
     }
-
-    .btn:hover { transform: translateY(-1px); opacity: 0.96; }
 
     .btn-primary {
       background: linear-gradient(90deg, var(--orange), var(--orange-2));
       color: white;
-      box-shadow: 0 12px 28px rgba(255,123,0,0.2);
     }
 
     .btn-secondary {
-      border-color: var(--line);
-      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
       color: var(--text);
     }
 
     .hero {
-      padding: 20px 0 72px;
+      padding: 40px 0 70px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 34px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
       align-items: center;
     }
 
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
       color: var(--blue);
       font-size: 0.8rem;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: rgba(255,255,255,0.03);
-      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
       margin: 0 0 16px;
-      font-size: clamp(2.8rem, 6vw, 5.2rem);
-      line-height: 0.96;
-      letter-spacing: -0.04em;
     }
 
     .accent { color: var(--orange); }
 
     .lede {
-      margin: 0 0 24px;
-      max-width: 680px;
       color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.75;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
 
     .hero-note {
-      margin-top: 12px;
-      color: #9aa8c4;
+      margin-top: 10px;
       font-size: 0.9rem;
-    }
-
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 0 0 30px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--line);
-      color: #e5ecfa;
-      font-size: 0.95rem;
+      color: #9aa8c4;
     }
 
     .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 28px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -60px -60px auto;
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(67,183,255,0.2), transparent 65%);
-      pointer-events: none;
+      border-radius: 24px;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
     }
 
     .hero-card img {
-      display: block;
       width: 100%;
-      border-radius: 18px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      object-fit: contain;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
     }
 
     .section {
-      padding: 0 0 28px;
+      padding: 40px 0;
     }
 
     .card {
       background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
       padding: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .section-label {
-      color: var(--orange);
-      font-size: 0.8rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-    }
-
-    .subtext {
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 16px;
     }
 
     .mini-card {
-      border-radius: 20px;
       padding: 20px;
-      background: rgba(255,255,255,0.035);
+      border-radius: 18px;
       border: 1px solid var(--line);
-    }
-
-    .mini-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-    }
-
-    .mini-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
+      background: rgba(255,255,255,0.04);
     }
 
     .repo-box {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: center;
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: 18px;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 16px;
       border: 1px solid var(--line);
-      background: rgba(0,0,0,0.18);
     }
-
-    .repo-label {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--blue);
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .repo-link {
-      word-break: break-word;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .repo-link:hover { text-decoration: underline; }
 
     footer {
-      padding: 28px 0 56px;
+      padding: 40px 0;
+      text-align: center;
       color: #9aa8c4;
-      font-size: 0.95rem;
     }
 
     @media (max-width: 900px) {
-      .hero-grid,
-      .grid-3,
-      .repo-box {
+      .hero-grid, .grid-3 {
         grid-template-columns: 1fr;
-      }
-
-      .nav {
-        gap: 18px;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .hero {
-        padding-bottom: 48px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <div class="brand">Ship<span>Forge</span> Labs</div>
+
+<div class="wrap">
+  <header class="nav">
+    <div class="brand">Ship<span>Forge</span> Labs</div>
+    <div class="nav-links">
+      <a class="btn btn-secondary" href="#repo">View Demo</a>
+      <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
+    </div>
+  </header>
+</div>
+
+<main class="hero">
+  <div class="wrap hero-grid">
+
+    <section>
+      <div class="eyebrow">Independent QA Automation Consultant</div>
+
+      <h1>
+        QA Automation That Actually<br />
+        <span class="accent">Catches Revenue-Impacting Bugs</span>
+      </h1>
+
+      <p class="lede">
+        I help engineering teams build reliable Cypress, API, and CI/CD test coverage so critical bugs are caught before they hit production.
+        From flaky tests to missing coverage, I focus on what actually breaks in real user flows — not just what looks good in CI.
+      </p>
+
       <div class="nav-links">
-        <a class="btn btn-secondary" href="#repo">View Demo</a>
         <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
+        <a class="btn btn-secondary" href="#repo">View Demo</a>
       </div>
-    </header>
+
+      <p class="hero-note">
+        Specializing in Cypress, API testing, and CI/CD reliability
+      </p>
+    </section>
+
+    <aside class="hero-card">
+      <img src="assets/shipforge-logo.png" alt="ShipForge Labs logo" />
+    </aside>
+
   </div>
+</main>
 
-  <main class="hero">
-    <div class="wrap hero-grid">
-      <section>
-        <div class="eyebrow">Independent QA Automation Consultant</div>
-        <h1>QA Automation That Actually<br /><span class="accent">Catches Revenue-Impacting Bugs</span></h1>
-        <p class="lede">
-          I help engineering teams build reliable Cypress, API, and CI/CD test coverage so critical bugs are caught before they hit production.
-          From flaky tests to missing coverage, I focus on what actually breaks in real user flows — not just what looks good in CI.
-        </p>
+<section class="section">
+  <div class="wrap">
+    <div class="card">
 
-        <ul class="pills">
-          <li class="pill">Cypress + TypeScript</li>
-          <li class="pill">API coverage</li>
-          <li class="pill">GitHub / GitLab CI</li>
-          <li class="pill">Smoke suite setup</li>
-        </ul>
+      <h2>Automation that actually improves release confidence</h2>
 
-        <div class="nav-links">
-          <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
-          <a class="btn btn-secondary" href="#repo">View Demo</a>
+      <p class="lede">
+        Most teams don’t have a testing problem — they have a reliability problem.
+        I help teams fix flaky tests, improve coverage, and build automation they can actually trust before shipping.
+      </p>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Test Stabilization</h3>
+          <p>Fix flaky tests so your CI results can actually be trusted.</p>
         </div>
 
-        <p class="hero-note">
-          Specializing in Cypress, API testing, and CI/CD reliability
-        </p>
-      </section>
-
-      <aside class="hero-card">
-        <img src="./shipforge-logo.png" alt="ShipForge Labs brand graphic" />
-      </aside>
-    </div>
-  </main>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="card">
-        <div class="section-label">What I help with</div>
-        <h2>Automation that actually improves release confidence</h2>
-        <p class="subtext">
-          Most teams don’t have a testing problem — they have a reliability problem.
-          I help teams fix flaky tests, improve coverage, and build automation they can actually trust before shipping.
-        </p>
-
-        <div class="grid-3">
-          <div class="mini-card">
-            <h3>Test Stabilization</h3>
-            <p>Fix flaky Cypress tests and unreliable pipelines so your team can trust CI results again.</p>
-          </div>
-          <div class="mini-card">
-            <h3>API + Critical Flow Coverage</h3>
-            <p>Ensure high-risk user journeys like checkout, reservations, and payments are fully covered.</p>
-          </div>
-          <div class="mini-card">
-            <h3>CI/CD Optimization</h3>
-            <p>Speed up and stabilize test execution so releases are faster and less stressful.</p>
-          </div>
+        <div class="mini-card">
+          <h3>API + Critical Flow Coverage</h3>
+          <p>Protect checkout, payments, and core flows that impact revenue.</p>
         </div>
 
-        <div class="repo-box" id="repo">
-          <div>
-            <div class="repo-label">Live Demo (UI + API Validation)</div>
-            <p class="subtext" style="margin: 0 0 12px;">
-              This demo shows how I test real-world user flows across both UI and API layers — including request validation, response assertions, and stable CI-ready execution.
-            </p>
-            <a class="repo-link" href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank" rel="noopener noreferrer">
-              github.com/kbry84/shipforge-qa-jumpstart
-            </a>
-          </div>
-          <a class="btn btn-primary" href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank" rel="noopener noreferrer">Open Demo Repo</a>
+        <div class="mini-card">
+          <h3>CI/CD Optimization</h3>
+          <p>Speed up pipelines and reduce release stress.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <footer>
-    <div class="wrap">ShipForge Labs — helping teams ship faster with automation they can trust.</div>
-  </footer>
+      <div class="repo-box" id="repo">
+        <h3>Live Demo (UI + API Validation)</h3>
+        <p>
+          A real-world Cypress test covering UI + API validation, request assertions, and CI-ready automation.
+        </p>
+
+        <a href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank">
+          github.com/kbry84/shipforge-qa-jumpstart
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  ShipForge Labs — helping teams ship faster with automation they can trust.
+</footer>
+
 </body>
 </html>
