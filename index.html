@@ -54,6 +54,7 @@
     .nav-links {
       display: flex;
       gap: 12px;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -62,6 +63,9 @@
       text-decoration: none;
       font-weight: 700;
       transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn:hover {
@@ -107,6 +111,11 @@
       line-height: 1.05;
     }
 
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
     .accent { color: var(--orange); }
 
     .lede {
@@ -114,6 +123,12 @@
       line-height: 1.7;
       margin-bottom: 24px;
       max-width: 640px;
+    }
+
+    .subtext {
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
     }
 
     .hero-note {
@@ -125,6 +140,8 @@
     .hero-card {
       border-radius: 28px;
       overflow: hidden;
+      padding: 0;
+      background: none;
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
     }
@@ -148,17 +165,6 @@
       backdrop-filter: blur(8px);
     }
 
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-    }
-
-    .subtext {
-      color: var(--muted);
-      margin-bottom: 24px;
-      line-height: 1.7;
-    }
-
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -174,11 +180,13 @@
 
     .mini-card h3 {
       margin: 0 0 10px;
+      font-size: 1.15rem;
     }
 
     .mini-card p {
       margin: 0;
       color: var(--muted);
+      line-height: 1.7;
     }
 
     .repo-box {
@@ -193,6 +201,103 @@
       margin-top: 0;
     }
 
+    .repo-box a {
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      word-break: break-word;
+    }
+
+    .repo-box a:hover {
+      text-decoration: underline;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .pricing-card {
+      position: relative;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(245,154,35,0.45);
+      box-shadow: 0 14px 40px rgba(255,123,0,0.12);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.035));
+    }
+
+    .pricing-badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(67,183,255,0.12);
+      color: var(--blue);
+      border: 1px solid rgba(67,183,255,0.24);
+    }
+
+    .pricing-card.featured .pricing-badge {
+      background: rgba(245,154,35,0.14);
+      color: #ffd099;
+      border-color: rgba(245,154,35,0.26);
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 8px 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .price-note {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .pricing-list {
+      margin: 0 0 22px;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .pricing-list li + li {
+      margin-top: 6px;
+    }
+
+    .pricing-footer {
+      margin-top: 24px;
+      color: #9aa8c4;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .final-cta {
+      margin-top: 22px;
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.035);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
     footer {
       padding: 40px 0;
       text-align: center;
@@ -202,107 +307,182 @@
 
     @media (max-width: 900px) {
       .hero-grid,
-      .grid-3 {
+      .grid-3,
+      .pricing-grid {
         grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
       }
     }
   </style>
 </head>
 
 <body>
-
-<div class="wrap">
-  <header class="nav">
-    <div class="brand">Ship<span>Forge</span> Labs</div>
-
-    <div class="nav-links">
-      <a class="btn btn-secondary" href="#repo">View Demo</a>
-      <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
-    </div>
-  </header>
-</div>
-
-<main class="hero">
-  <div class="wrap hero-grid">
-
-    <section>
-      <div class="eyebrow">Independent QA Automation Consultant</div>
-
-      <h1>
-        QA Automation That Actually<br />
-        <span class="accent">Catches Revenue-Impacting Bugs</span>
-      </h1>
-
-      <p class="lede">
-        I help engineering teams build reliable Cypress, API, and CI/CD test coverage so critical bugs are caught before they hit production.
-        From flaky tests to missing coverage, I focus on what actually breaks in real user flows — not just what looks good in CI.
-      </p>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">Ship<span>Forge</span> Labs</div>
 
       <div class="nav-links">
-        <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
         <a class="btn btn-secondary" href="#repo">View Demo</a>
+        <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
       </div>
-
-      <p class="hero-note">
-        Specializing in Cypress, API testing, and CI/CD reliability
-      </p>
-    </section>
-
-    <!-- 🔥 IMPACT HERO VISUAL -->
-    <aside class="hero-card">
-      <img src="shipforge-badge.png" alt="ShipForge Labs logo" />
-    </aside>
-
+    </header>
   </div>
-</main>
 
-<section class="section">
-  <div class="wrap">
-    <div class="card">
+  <main class="hero">
+    <div class="wrap hero-grid">
+      <section>
+        <div class="eyebrow">Independent QA Automation Consultant</div>
 
-      <h2>Automation that actually improves release confidence</h2>
+        <h1>
+          QA Automation That Actually<br />
+          <span class="accent">Catches Revenue-Impacting Bugs</span>
+        </h1>
 
-      <p class="subtext">
-        Most teams don’t have a testing problem — they have a reliability problem.
-        I help teams fix flaky tests, improve coverage, and build automation they can actually trust before shipping.
-      </p>
-
-      <div class="grid-3">
-        <div class="mini-card">
-          <h3>Test Stabilization</h3>
-          <p>Fix flaky Cypress tests so your team can trust CI results again.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>API + Critical Flow Coverage</h3>
-          <p>Ensure high-risk flows like checkout and reservations are fully protected.</p>
-        </div>
-
-        <div class="mini-card">
-          <h3>CI/CD Optimization</h3>
-          <p>Speed up pipelines and reduce release stress.</p>
-        </div>
-      </div>
-
-      <div class="repo-box" id="repo">
-        <h3>Live Demo (UI + API Validation)</h3>
-
-        <p class="subtext">
-          A real-world Cypress test covering UI + API validation, request assertions, and CI-ready automation.
+        <p class="lede">
+          I help engineering teams build reliable Cypress, API, and CI/CD test coverage so critical bugs are caught before they hit production.
+          From flaky tests to missing coverage, I focus on what actually breaks in real user flows — not just what looks good in CI.
         </p>
 
-        <a href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank">
-          github.com/kbry84/shipforge-qa-jumpstart
-        </a>
-      </div>
+        <div class="nav-links">
+          <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com">Book a Call</a>
+          <a class="btn btn-secondary" href="#pricing">View Pricing</a>
+        </div>
 
+        <p class="hero-note">
+          Specializing in Cypress, API testing, and CI/CD reliability
+        </p>
+      </section>
+
+      <aside class="hero-card">
+        <img src="shipforge-badge.png?v=3" alt="ShipForge Labs brand banner" />
+      </aside>
     </div>
-  </div>
-</section>
+  </main>
 
-<footer>
-  ShipForge Labs — helping teams ship faster with automation they can trust.
-</footer>
+  <section class="section">
+    <div class="wrap">
+      <div class="card">
+        <h2>Automation that actually improves release confidence</h2>
 
+        <p class="subtext">
+          Most teams don’t have a testing problem — they have a reliability problem.
+          I help teams fix flaky tests, improve coverage, and build automation they can actually trust before shipping.
+        </p>
+
+        <div class="grid-3">
+          <div class="mini-card">
+            <h3>Test Stabilization</h3>
+            <p>Fix flaky Cypress tests so your team can trust CI results again.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>API + Critical Flow Coverage</h3>
+            <p>Ensure high-risk flows like checkout and reservations are fully protected.</p>
+          </div>
+
+          <div class="mini-card">
+            <h3>CI/CD Optimization</h3>
+            <p>Speed up pipelines and reduce release stress.</p>
+          </div>
+        </div>
+
+        <div class="repo-box" id="repo">
+          <h3>Live Demo (UI + API Validation)</h3>
+
+          <p class="subtext">
+            A real-world Cypress test covering UI + API validation, request assertions, and CI-ready automation.
+          </p>
+
+          <a href="https://github.com/kbry84/shipforge-qa-jumpstart" target="_blank" rel="noopener noreferrer">
+            github.com/kbry84/shipforge-qa-jumpstart
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="card">
+        <div class="eyebrow">Pricing</div>
+        <h2>Simple packages for teams that need better test reliability</h2>
+        <p class="subtext">
+          These are typical starting ranges based on scope, current test maturity, and how much cleanup or setup is needed.
+          Final pricing depends on the size of the flow, tooling, and CI/CD requirements.
+        </p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-badge">Starter</div>
+            <h3>Automation Jumpstart</h3>
+            <div class="price">$2,500–$4,000</div>
+            <div class="price-note">
+              Best for teams that need a clean automation foundation without overcomplicating the stack.
+            </div>
+            <ul class="pricing-list">
+              <li>Cypress setup from scratch</li>
+              <li>5–10 core smoke or regression tests</li>
+              <li>Basic CI integration</li>
+              <li>Project structure and handoff notes</li>
+            </ul>
+            <a class="btn btn-secondary" href="mailto:hello@shipforgelabs.com?subject=Automation%20Jumpstart%20Inquiry">Ask about this package</a>
+          </div>
+
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Most Popular</div>
+            <h3>API + Critical Flow Coverage</h3>
+            <div class="price">$4,000–$7,500</div>
+            <div class="price-note">
+              Best for teams that already have some testing in place but still have high-risk gaps around core user flows.
+            </div>
+            <ul class="pricing-list">
+              <li>API validation and critical path coverage</li>
+              <li>High-value flow automation for checkout, booking, or core journeys</li>
+              <li>Request and response assertions</li>
+              <li>CI-ready execution with stable test design</li>
+            </ul>
+            <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com?subject=API%20%2B%20Critical%20Flow%20Coverage%20Inquiry">Book a discovery call</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-badge">Optimization</div>
+            <h3>Test Stabilization + CI Cleanup</h3>
+            <div class="price">$3,000–$6,000</div>
+            <div class="price-note">
+              Best for teams dealing with flaky tests, slow pipelines, and low confidence in release readiness.
+            </div>
+            <ul class="pricing-list">
+              <li>Flaky test triage and cleanup</li>
+              <li>CI stability improvements</li>
+              <li>Execution speed and reliability tuning</li>
+              <li>Recommendations for maintainability</li>
+            </ul>
+            <a class="btn btn-secondary" href="mailto:hello@shipforgelabs.com?subject=Test%20Stabilization%20and%20CI%20Cleanup%20Inquiry">Discuss your setup</a>
+          </div>
+        </div>
+
+        <div class="pricing-footer">
+          Need something more custom? I also offer scoped proof-of-concept work, targeted flow audits, and follow-on support for teams that want to keep improving after the initial engagement.
+        </div>
+
+        <div class="final-cta">
+          <div>
+            <strong>Not sure which package fits?</strong><br />
+            I can usually tell within one short call where your biggest reliability gaps are.
+          </div>
+          <a class="btn btn-primary" href="mailto:hello@shipforgelabs.com?subject=Discovery%20Call%20Request">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    ShipForge Labs — helping teams ship faster with automation they can trust.
+  </footer>
 </body>
 </html>
